@@ -1,0 +1,35 @@
+﻿@model _05.Fiap.Web.MVC.Models.Bar
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrar</h2>
+@if (TempData["msg"] != null)
+{
+<div>
+    @TempData["msg"]
+</div>
+}
+    
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(b => b.Nome)
+        @Html.TextBoxFor(b => b.Nome, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(b => b.Descricao)
+        @Html.TextAreaFor(b => b.Descricao, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.CheckBoxFor(b => b.ProibidoMenores)
+        @Html.LabelFor(b => b.ProibidoMenores)
+    </div>
+    <div>
+       @Html.LabelFor(b => b.Cidade)
+       @Html.DropDownListFor(b => b.Cidade, ViewBag.listaCidades as SelectList) <!--O que vier do controler-->
+    </div>
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+}
