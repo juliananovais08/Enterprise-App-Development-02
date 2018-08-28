@@ -5,19 +5,26 @@
 
 <h2>Cadastro de Pet</h2>
 
+@if(TempData["msg"] != null)
+{
+    <div class = "alert alert-sucess">
+        @TempData["msg"];
+    </div>
+}
+
 @using (Html.BeginForm())
 {
     <div class="form-group">
         @Html.LabelFor(a => a.Nome)
-        @Html.TextBoxFor(a => a.Nome, new { @class = "form-control" })
+        @Html.TextBoxFor(a => a.Nome, new { @class = "form-control", @placeholder = "Nome" })
     </div>
     <div class="form-group">
         @Html.LabelFor(a => a.Raca)
-        @Html.TextAreaFor(a => a.Raca, new { @class = "form-control" })
+        @Html.TextAreaFor(a => a.Raca, new { @class = "form-control", @placeholder = "Raça" })
     </div>
     <div class="form-group">
         @Html.LabelFor(a => a.Peso)
-        @Html.TextAreaFor(a => a.Peso, new { @class = "form-control" })
+        @Html.TextAreaFor(a => a.Peso, new { @class = "form-control", @placeholder = "Peso" })
     </div>
     <div class="form-group">
         @Html.CheckBoxFor(a => a.Castrado)
