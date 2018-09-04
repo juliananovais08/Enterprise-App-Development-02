@@ -1,11 +1,21 @@
 ﻿@model _07.Fiap.Web.MVC.Models.Time
 @{
-    ViewBag.Title = "Time";
+    ViewBag.Title = "Cadastrar";
 }
 
-<h2>Time</h2>
+<h2>Cadastro de técnico</h2>
+
+@if (TempData["msg"] != null)
+{
+<div class="alert alert-sucess">
+    @TempData["msg"];
+</div>
+}
+
+
 
 @using (Html.BeginForm())
+
 {
     <div class="form-group">
         @Html.LabelFor(t => t.Nome)
@@ -19,7 +29,7 @@
         <legend>Técnico</legend>
         <div class="form-group">
             @Html.LabelFor(t => t.Tecnico.Nome)
-            @Html.TextBoxFor(t => t.Tecnico.Nome, new { @class = "form-control"})
+            @Html.TextBoxFor(t => t.Tecnico.Nome, new { @class = "form-control" })
         </div>
         <div class="form-group">
             @Html.LabelFor(t => t.Tecnico.Salario)
