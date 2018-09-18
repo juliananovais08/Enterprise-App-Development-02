@@ -110,12 +110,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\JogadorController.cs" />
     <Compile Include="Controllers\TimeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Campeonato.cs" />
     <Compile Include="Models\Jogador.cs" />
+    <Compile Include="Models\Posicao.cs" />
     <Compile Include="Models\Tecnico.cs" />
     <Compile Include="Models\Time.cs" />
     <Compile Include="Persistencia\BrasfootContext.cs" />
@@ -129,8 +131,10 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Time\Time.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Jogador\Cadastrar.cshtml" />
+    <Content Include="Views\Jogador\Listar.cshtml" />
+    <Content Include="Views\Time\Cadastrar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
