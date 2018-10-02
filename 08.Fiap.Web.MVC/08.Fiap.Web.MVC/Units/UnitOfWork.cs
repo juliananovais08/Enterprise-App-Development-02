@@ -14,7 +14,21 @@ namespace _08.Fiap.Web.MVC.Units
 
         //propfull tab tab
 
+        private IDependenteRepository _dependenteRepository;
+
         private IResponsavelRepository _responsavelRepository;
+
+        public IDependenteRepository DependenteRepository
+        {
+            get
+            {
+                if (_dependenteRepository == null)
+                {
+                    _dependenteRepository = new DependenteRepository(_context);
+                }
+                return _dependenteRepository;
+            }
+        }
 
         public IResponsavelRepository ResponsavelRepository
         {
@@ -44,6 +58,8 @@ namespace _08.Fiap.Web.MVC.Units
         {
             _context.SaveChanges();
         }
+
+
 
     }
 }
