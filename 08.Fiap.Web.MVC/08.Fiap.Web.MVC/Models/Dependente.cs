@@ -10,6 +10,7 @@ namespace _08.Fiap.Web.MVC.Models
         public int DependenteId { get; set; }
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
+        public bool Bolsista { get; set; }
 
         //Relacionamento
 

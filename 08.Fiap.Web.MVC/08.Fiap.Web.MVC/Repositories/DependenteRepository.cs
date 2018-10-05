@@ -31,7 +31,7 @@ namespace _08.Fiap.Web.MVC.Repositories
 
         public IList<Dependente> BuscarPor(Expression<Func<Dependente, bool>> filtro)
         {
-            return _context.Dependentes.Where(filtro).ToList();
+            return _context.Dependentes.Include("Responsavel").Where(filtro).ToList(); //INCLUDE PRA TRAZER O RESPONSAVEL NA PAGINA DE LISTAGEM
         }
 
         public void Cadastrar(Dependente dependente)
@@ -41,7 +41,7 @@ namespace _08.Fiap.Web.MVC.Repositories
 
         public IList<Dependente> listar()
         {
-            return _context.Dependentes.ToList();
+            return _context.Dependentes.Include("Responsavel").ToList();
         }
 
         public void Remover(int codigo)
