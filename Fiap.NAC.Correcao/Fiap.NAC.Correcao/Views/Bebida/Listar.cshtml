@@ -1,0 +1,62 @@
+﻿@model List<Fiap.NAC.Correcao.Models.Bebida>
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Lista de Bebidas</h2>
+
+@using (Html.BeginForm("Pesquisar", "Bebida", FormMethod.Get))
+{
+    <input type="text" name="nome" class="form-control" />
+    <input type="submit" value="Pesquisar" class="btn btn-primary" />
+}
+
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Data de Validade</th>
+        <th>Valor</th>
+        <th>Alcoolico</th>
+        <th>Excluir</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.DataValidade</td>
+            <td>@item.Valor</td>
+            <td>@item.Alcoolico</td>
+            <td>@item.BebidaId</td>
+            <td>
+                <!-- Button trigger modal -->
+                <button onclick="idcodigo.value = @item.BebidaId" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                    Remover
+                </button>
+            </td>
+        </tr>
+    }
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmar</h4>
+            </div>
+            <div class="modal-body">
+               Deseja realmente excluir a bebida?
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Remover","Bebida"))
+                {
+                    <input type="hidden" name="codigo" id="idcodigo"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Sim</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
