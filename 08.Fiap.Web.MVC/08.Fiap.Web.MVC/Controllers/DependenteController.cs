@@ -1,5 +1,6 @@
 ﻿using _08.Fiap.Web.MVC.Models;
 using _08.Fiap.Web.MVC.Units;
+using _08.Fiap.Web.MVC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,10 @@ namespace _08.Fiap.Web.MVC.Controllers
         [HttpGet]
         public ActionResult Cadastrar()
         {
+            var viewModel = new DependenteViewModel();
             var lista = _unit.ResponsavelRepository.Listar(); //pra fazer o select e trazer o responsável
             ViewBag.responsaveis = new SelectList(lista, "ResponsavelId", "Nome");
-            return View();
+            return View(viewModel);
         }
 
         [HttpPost]
