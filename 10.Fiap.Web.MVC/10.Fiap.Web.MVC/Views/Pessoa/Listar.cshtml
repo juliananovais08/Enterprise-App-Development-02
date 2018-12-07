@@ -1,0 +1,108 @@
+﻿@model List<_10.Fiap.Web.MVC.Models.Pessoa>
+@{
+    ViewBag.Title = "Listar";
+}
+
+@*CAPITULO 04 e CAPITULO 05*@
+
+<h2>Lista de Pessoas</h2>
+
+@Help.Mensagem(TempData["msg"])
+
+<div class="row">
+    <div class="col-md-5">
+        @using (Html.BeginForm("BuscarPorNome", "Pessoa", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            <input type="text" name="nome" class="form-control" placeholder="Digite o nome" />
+            @Help.Botao("Pesquisar por Nome")
+        }
+    </div>
+    <div class="col-md-4">
+        @using (Html.BeginForm("BuscarPorPais", "Pessoa", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            @Html.DropDownList("PaisId", ViewBag.paises as SelectList, "Selecione", new { @class = "form-inline" })
+            @Help.Botao("Pesquisar por Pais")
+        }
+    </div>
+</div>
+<br />
+<table class="table table-striped"> @*CAPITULO 05*@
+    <tr>
+        <th>Nome</th>
+        <th>Data de Nascimento</th>
+        <th>Sexo</th>
+        <th>Valido</th>
+        <th>Pais</th>
+    </tr>
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@i.Nome</td>
+            <td>@i.DataNascimento</td>
+            <td>@i.Sexo</td>
+            <td>@(i.Valido ? "Sim" : "Não")</td>
+            <td>@i.Pais.Nome</td>
+            <td>
+                @if (!i.Valido)
+                {
+                    <Button onclick="codigoValidacao.value = @i.PessoaId" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalValidar">
+                        Validar
+                    </Button>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { @id = i.PessoaId}, new { @class="btn btn-primary"})
+                <Button onclick="codigoRemover.value = @i.PessoaId" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalExcluir">
+                    Remover
+                </Button>
+            </td>
+        </tr>
+    }
+</table>
+
+<!-- Modal Validar-->
+<div class="modal fade" id="modalValidar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmação</h4>
+            </div>
+            <div class="modal-body">
+                Deseja realmente vaidar a Pessoa?
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Validar", "Pessoa"))
+                {
+                    <input type="hidden" name="codigo" id="codigoValidacao" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-success">Sim</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Excluir-->
+<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmação</h4>
+            </div>
+            <div class="modal-body">
+                Deseja realmente excluir a Pessoa?
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Remover", "Pessoa"))
+                {
+                    <input type="hidden" name="codigo" id="codigoRemover" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

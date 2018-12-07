@@ -32,7 +32,7 @@ namespace _09.Fiap.Web.MVC.Units
         {
             get
             {
-                if (_jogoRepository == null)
+                if (_generoRepository == null)
                 {
                     _generoRepository = new GeneroRepository(_context);
                 }
@@ -45,7 +45,11 @@ namespace _09.Fiap.Web.MVC.Units
         //Libera conexão com o banco
         public void Dispose()
         {
-            _context.SaveChanges();
+            if(_context != null)
+            {
+                _context.Dispose();
+            }
+            GC.SuppressFinalize(this);
         }
 
         //COMMITAR

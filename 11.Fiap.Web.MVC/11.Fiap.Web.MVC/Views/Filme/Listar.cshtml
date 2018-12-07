@@ -1,0 +1,103 @@
+﻿@model List<_11.Fiap.Web.MVC.Models.Filme>
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Lista de Filmes</h2>
+
+@Help.Mensagem(TempData["msg"])
+
+<div class="row">
+    <div class="col-md-5">
+        @using(Html.BeginForm("BuscarPorNome", "Filme", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            <input type="text" name="nome" class="form-control" placeholder="Digite o nome" />
+            @Help.Botao("Pesquisar por Nome")
+        }
+    </div>
+    <div class="col-md-4">
+        @using (Html.BeginForm("BuscarPorGenero", "Filme", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            @Html.DropDownList("GeneroId", ViewBag.generos as SelectList, "Selecione", new { @class = "form-control" })
+            @Help.Botao("Pesquisar Genero")
+        }
+    </div>
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>Nome</th>
+        <th>Data de Lançamento</th>
+        <th>Tipo</th>
+        <th>Disponivel</th>
+        <th>Genero</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.DataLancamento</td>
+            <td>@item.Tipo</td>
+            <td>@(item.Disponivel ? "Sim" : "Não")</td>
+            <td>@item.Genero.Nome</td>
+            <td>
+                @if (!item.Disponivel)
+                {
+                    <Button onclick="codigoDisponivel.Value" ="@item.FilmeId" type="button" class="btn btn-sucess btn-sm" data-toggle="modal" data-target="#modalDisponibilizar">
+                Disponibilizar</Button>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { @id = item.FilmeId}, new { @class="btn btn-primary btn-sm"})
+                <Button onclick="codigoRemover.Value" ="@item.FilmeId" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalExcluir">
+                Remover</Button>
+            </td>
+        </tr>
+    }
+</table>
+
+<!-- Modal Disponibilizar-->
+<div class="modal fade" id="modalDisponibilizar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmação</h4>
+            </div>
+            <div class="modal-body">
+                Deseja realmente disponibilizar o jogo?
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Disponibilizar", "Filme"))
+                {
+                    <input type="hidden" name="codigo" id="codigoDisponivel" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-success">Sim</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Excluir-->
+<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmação</h4>
+            </div>
+            <div class="modal-body">
+                Deseja realmente excluir o jogo?
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Remover", "Filme"))
+                {
+                    <input type="hidden" name="codigo" id="codigoRemover" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

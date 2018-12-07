@@ -39,7 +39,7 @@ namespace _09.Fiap.Web.MVC.Repositories
             _context.Jogos.Add(jogo);
         }
 
-        public IList<Jogo> listar()
+        public IList<Jogo> Listar()
         {
             return _context.Jogos.ToList();
         }

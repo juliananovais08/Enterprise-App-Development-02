@@ -12,6 +12,6 @@ namespace _09.Fiap.Web.MVC.Repositories
     {
 
         void Cadastrar(Genero Genero);
-        IList<Genero> listar();
+        IList<Genero> Listar();
     }
 }

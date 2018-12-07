@@ -1,0 +1,19 @@
+﻿@model _11.Fiap.Web.MVC.Models.Genero
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastro de Gênero</h2>
+
+@Help.Mensagem(TempData["msg"]);
+
+@using (Html.BeginForm())
+{
+    <div classs="form-group">
+        @Html.LabelFor(g => g.Nome)
+        @Html.TextBoxFor(g => g.Nome, new { @class = "form-control" })
+    </div>
+    @Help.Botao("Cadastrar")
+    @Html.ActionLink("Cancelar", "Listar", "Filme")
+}
+

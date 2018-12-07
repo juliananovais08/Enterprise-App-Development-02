@@ -12,7 +12,7 @@ namespace _09.Fiap.Web.MVC.Repositories
     public interface IJogoRepository
     {
         void Cadastrar(Jogo jogo);
-        IList<Jogo> listar();
+        IList<Jogo> Listar();
         void Atualizar(Jogo jogo);
         void Remover(int codigo);
         IList<Jogo> BuscarPor(Expression<Func<Jogo, bool>> filtro);

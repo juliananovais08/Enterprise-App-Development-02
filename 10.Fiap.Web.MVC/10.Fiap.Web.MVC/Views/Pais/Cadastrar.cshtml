@@ -1,0 +1,21 @@
+﻿@model _10.Fiap.Web.MVC.Models.Pais
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastro de Pais</h2>
+
+@Help.Mensagem(TempData["msg"])
+
+@*CAPITULO 04*@
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(p => p.Nome)
+        @Html.TextBoxFor(p => p.Nome, new { @class = "form-control" })
+    </div>
+    @Help.Botao("Cadastrar")
+    @Html.ActionLink("Cancelar", "Listar", "Pessoa", new { @class = "btn btn-default" }) //CAP 04
+}

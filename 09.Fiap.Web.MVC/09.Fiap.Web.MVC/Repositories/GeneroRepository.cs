@@ -21,7 +21,7 @@ namespace _09.Fiap.Web.MVC.Repositories
             _context.Generos.Add(genero);
         }
 
-        public IList<Genero> listar()
+        public IList<Genero> Listar()
         {
             return _context.Generos.ToList();
         }

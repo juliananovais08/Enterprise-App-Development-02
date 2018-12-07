@@ -1,0 +1,42 @@
+﻿@model _10.Fiap.Web.MVC.Models.Pessoa
+@{
+
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editação de Pessoa</h2>
+
+@*CAPITULO 04*@
+
+@Help.Mensagem(TempData["msg"])
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(p => p.Nome)
+        @Html.TextBoxFor(p => p.Nome, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.DataNascimento)
+        @Html.TextBoxFor(p => p.DataNascimento, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Sexo)
+        @Html.EnumDropDownListFor(p => p.Sexo, "Selecione", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.CheckBoxFor(p => p.Valido, new { @class = "form-inline" })
+        @Html.LabelFor(p => p.Valido)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Pais)
+        @Html.DropDownListFor(p => p.PaisId, ViewBag.paises as SelectList, "Selecione", new { @class = "form-control" })
+    </div>
+    @Help.Botao("Editar")
+    @Html.ActionLink("Cancelar", "Listar", "Pessoa", new { @class = "btn btn-default" }) //CAP 04
+
+    ////Texto do Link(cancelar), Ação(pagina de listar), Controller(PessoaController)
+    ////Ao cancelar vai para a pagina de Listar de volta
+
+}
+

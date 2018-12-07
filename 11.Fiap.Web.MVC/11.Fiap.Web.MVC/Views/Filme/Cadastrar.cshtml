@@ -1,0 +1,35 @@
+﻿@model _11.Fiap.Web.MVC.Models.Filme
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrao de Filme</h2>
+
+@Help.Mensagem(TempData["msg"]);
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(f => f.Nome)
+        @Html.TextBoxFor(f => f.Nome, new { @class="form-control"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(f => f.DataLancamento)
+        @Html.TextBoxFor(f => f.DataLancamento, new { @class="form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(f => f.Tipo)
+        @Html.EnumDropDownListFor(f => f.Tipo, "Selecione", new { @class="form=control"})
+    </div>
+    <div class="form-group">
+        @Html.CheckBoxFor(f => f.Disponivel, new { @class="form-inline"})
+        @Html.LabelFor(f => f.Disponivel)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(f => f.Genero)
+        @Html.DropDownListFor(f => f.GeneroId, ViewBag.Generos as SelectList, "Selecione", new { @class="form-control"})
+    </div>
+    @Help.Botao("Cadastrar")
+    @Html.ActionLink("Cancelar", "Listar", "Filme")
+}
+
