@@ -9,9 +9,9 @@ namespace _09.Fiap.Web.MVC.Repositories
 {
     public class GeneroRepository : IGeneroRepository
     {
-        private GameContext _context;
+        private GamesContext _context;
 
-        public GeneroRepository(GameContext context)
+        public GeneroRepository(GamesContext context)
         {
             _context = context;
         }

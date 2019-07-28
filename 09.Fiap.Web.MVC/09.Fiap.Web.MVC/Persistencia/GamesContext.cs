@@ -7,7 +7,7 @@ using System.Web;
 
 namespace _09.Fiap.Web.MVC.Persistencia
 {
-    public class GameContext : DbContext
+    public class GamesContext : DbContext
     {
         public DbSet <Genero> Generos { get; set; }
         public DbSet <Jogo> Jogos { get; set; }

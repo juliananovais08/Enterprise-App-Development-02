@@ -12,9 +12,9 @@ namespace _09.Fiap.Web.MVC.Repositories
     public class JogoRepository : IJogoRepository
     {
 
-        private GameContext _context;
+        private GamesContext _context;
 
-        public JogoRepository(GameContext context)
+        public JogoRepository(GamesContext context)
         {
             _context = context;
         }

@@ -4,13 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace _09.Fiap.Web.MVC.Units
 {
     public class UnitOfWork : IDisposable
     //IDisposable - esta implementando uma interface que vai liberar a conexão com o banco
     {
-        private GameContext _context = new GameContext();
+        private GamesContext _context = new GamesContext();
 
         private IJogoRepository _jogoRepository;
         private IGeneroRepository _generoRepository;

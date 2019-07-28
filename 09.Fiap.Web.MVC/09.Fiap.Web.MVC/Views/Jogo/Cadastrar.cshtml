@@ -23,7 +23,7 @@
         @Html.EnumDropDownListFor(j => j.Plataforma, new  { @class = "form-control"})
     </div>
     <div class="form-group">
-        @Html.LabelFor(j => j.Plataforma)
+        @Html.LabelFor(j => j.Genero)
         @Html.DropDownListFor(j => j.GeneroId, ViewBag.generos as SelectList, "Selecione", new { @class = "form-control"})
     </div>
     @Ajudante.Botao("Cadastrar")
